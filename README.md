@@ -1,5 +1,3 @@
-# Welcome to GitHub Desktop!
+# ECE3011 Fall 2023 Team 2
 
-This is your README. READMEs are where you can communicate what your project is and how to use it.
-
-Write your name on line 6, save it, and then head back to GitHub Desktop.
+Team members: Antonio Romero, Maxime Antoine Beaulieu, Charles Khamis Lindberg, Wahib Abdul Yonis
