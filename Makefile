@@ -1,7 +1,8 @@
 CFLAGS = -g -Wall
+TARGET = main.cpp genProblem.cpp hardware.cpp
 
 all:
-	g++ main.cpp genProblem.cpp hardware.cpp $(CFLAGS) -o main
+	g++ $(TARGET) $(CFLAGS) -o main
 
 clean:
 	$(RM) main

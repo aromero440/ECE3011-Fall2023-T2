@@ -1,19 +1,9 @@
 /* Generates the problem given a specific grade level */
 
-/* Holds all the information for a problem*/
-typedef struct _problem {
-    int arg1;
-    int arg2;
-    int correctAnswer;
-} problem;
+#include "globals.h"
 
-/**
- * @brief Describes which grade difficulty
- */
-enum Grade
-{
-    Kindergarden, First, Second, Third, Fourth, Fifth
-};
+#ifndef GENPROBLEM_H
+#define GENPROBLEM_H
 
 /**
  * @brief Returns a problem for a specific gradde
@@ -22,3 +12,5 @@ enum Grade
  * @return problem the specific problem
  */
 problem generateProblem(Grade grade);
+
+#endif

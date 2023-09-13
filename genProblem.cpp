@@ -1,7 +1,8 @@
 #include "genProblem.h"
 
 problem generateProblem(Grade grade) {
-    //return NULL;
+    problem prob = {0, 0, 0};
+    return prob;
 }
 
 int randomInt(int low, int high) {
