@@ -4,8 +4,9 @@
 /* Holds all the information for a problem*/
 typedef struct _problem {
     int arg1;
+    int operation;
     int arg2;
-    int correctAnswer;
+    int result;
 } problem;
 
 /**
@@ -15,5 +16,13 @@ enum Grade
 {
     Kindergarden, First, Second, Third, Fourth, Fifth
 };
+
+#define ADDITION 0
+#define SUBTRACTION 1
+#define MULTIPLICATION 2
+#define DIVISION 3
+
+#define CALCFORRESULT 0
+#define CALCFOROPERAND 1
 
 #endif // GLOBALS_H
