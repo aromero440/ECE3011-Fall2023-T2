@@ -6,22 +6,21 @@
 #ifndef HARDWARE_H
 #define HARDWARE_H 
 
-#define OFF 0
-#define ON 1
-
-#define GREEN 10
-#define RED 11
-
-void display(problem prob);
-
 // flash light
 
 // speaker
 
 // sensors
+void initProxSensors();
+
+int currProxActive();
+
+int roundAnalogToDigital(int analogVar);
 
 // enter button
+void enterButtonInit();
 
 // cycle difficulties button
+void cycleButtonInit();
 
 #endif

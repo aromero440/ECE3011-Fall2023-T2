@@ -1,7 +1,6 @@
 /* Generates the problem given a specific grade level */
 
 #include "globals.h"
-#include <string>
 
 #ifndef GENPROBLEM_H
 #define GENPROBLEM_H
@@ -29,6 +28,10 @@ int randomInt(int low, int high);
  * @param prob problem to convert
  * @return string problem formatted
  */
-std::string probToString(problem prob);
+String probToString(problem prob);
+
+Grade cycleGrade(Grade g);
+
+String currGradeToString(Grade g);
 
 #endif

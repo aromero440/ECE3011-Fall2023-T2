@@ -1,7 +1,10 @@
-#include "genProblem.h"
-#include <cstdlib>
+#include "globals.h"
 
-using namespace std;
+int randomInt(int low, int high) {
+    randomSeed(analogRead(6));
+    int num = random(low, high + 1);
+    return num;
+}
 
 problem generateProblem(Grade grade) {
     // determine the lowerbound and upperbound of the operators, and the operator
@@ -49,7 +52,13 @@ problem generateProblem(Grade grade) {
     case Second:
         // Addition or subtraction
         // Within 0-39 (max our board can do)
-        operation = randomInt(ADDITION, SUBTRACTION);
+        operation = randomInt(ADDITION, MULTIPLICATION);
+        if (operation == MULTIPLICATION) {
+            op1 = randomInt(0,3);
+            op2 = op1;
+            result = op1 * op1;
+            break;
+        }
         op1 = randomInt(0, 9);
         op2 = randomInt(0, 9 - op1);
         if (operation == ADDITION) {
@@ -70,7 +79,7 @@ problem generateProblem(Grade grade) {
             op1 = randomInt(0, 4);
             op2 = 0;
             do {
-                op2 = randomInt(0, 9 / op1);
+                op2 = randomInt(0, 4);
             } while (op1 * op2 >= 10);
             result = op1 * op2;
         } else {
@@ -98,17 +107,12 @@ problem generateProblem(Grade grade) {
     return prob;
 }
 
-int randomInt(int low, int high) {
-    int num = low + (rand() % (high - low + 1));
-    return num;
-}
+String probToString(problem prob) {
+    String operation_s, op1_s, op2_s, result_s;
 
-string probToString(problem prob) {
-    string operation_s, op1_s, op2_s, result_s;
-
-    op1_s = to_string(prob.arg1);
-    op2_s = to_string(prob.arg2);
-    result_s = to_string(prob.result);
+    op1_s = String(prob.arg1);
+    op2_s = String(prob.arg2);
+    result_s = String(prob.result);
 
     switch (prob.operation) {
     case ADDITION:
@@ -127,6 +131,40 @@ string probToString(problem prob) {
         operation_s = "ERROR";
         break;
     }
-    string out = "Problem: " + op1_s + operation_s + op2_s + "=" + result_s;
+    String out = "" + op1_s + operation_s + op2_s + "= _?";
     return out;
+}
+
+Grade cycleGrade(Grade g) {
+  switch (g) {
+    case Init:
+      return Kindergarden;
+    case Kindergarden:
+        return First;
+    case First:
+        return Second;
+    case Second:
+        return Third;
+    case Third:
+        return Kindergarden;
+        break;
+    default:
+        return Init;
+        break;
+  }
+}
+
+String currGradeToString(Grade g) {
+  switch (g) {
+    case Kindergarden:
+      return "Kinder";
+    case First:
+      return "First";
+    case Second:
+      return "Second";
+    case Third:
+      return "Third";
+    default:
+      return "";
+  }
 }
