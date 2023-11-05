@@ -7,7 +7,7 @@ The specific numbers and operations for each grade are pulled from the Georgia S
 
 This program is intended to handle the interaction between all components of the robot. The following include descriptions of what each file does:
 
-- **main.cpp**: Main file to control all robot functionality
+- **ECE_3011_Junior_Design.ino**: Main file to control all robot functionality
 - **genProblem.h/genProblem.cpp**: Generates the problem given a specific grade level
 - **hardware.h/hardware.cpp**: Responsible for handling all interactions with hardware. This includes: light, speaker, screen, motor, and sensors
 - **test.cpp**: Contains the test framework
