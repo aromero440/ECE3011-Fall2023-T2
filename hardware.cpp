@@ -3,6 +3,23 @@
 // flash light
 
 // speaker
+void soundCorrect(int speaker){
+  tone(speaker, 2000);
+  delay(100);
+  tone(speaker, 4000);
+  delay(100);
+  tone(speaker, 7000, 100);
+  delay(100);
+  tone(speaker, 4000, 100);
+}
+
+void soundIncorrect(int speaker){
+  tone(speaker, 500);
+  delay(300);
+  tone(speaker, 400);
+  delay(300);
+  tone(speaker, 200, 900);
+}
 
 // sensors
 void initProxSensors() {

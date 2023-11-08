@@ -5,6 +5,7 @@
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 Grade currGrade;
+Servo myservo;
 
 void setup() {
   Serial.begin(9600);
@@ -16,6 +17,9 @@ void setup() {
   cycleButtonInit();
 
   initProxSensors();
+
+  myservo.attach(MOTOR_PIN);
+  myservo.write(0);
 
   display.clearDisplay();
   display.setTextColor(SSD1306_WHITE);
@@ -40,9 +44,16 @@ void loop() {
     Serial.println(probToString(p));
     int enterButtonState = 1;
 
-    while (enterButtonState == 1 || cycleButtonState == 0) { // Wait until user selects enter
+    int pos = 0; // start position of motor
+    while ((enterButtonState == 1 || cycleButtonState == 0) && pos <= 180) { // Wait until user selects enter or out of time
+      myservo.write(pos);
+      //Serial.println(pos);
+      pos += 1;
+      delay(100);
+
       cycleButtonState = digitalRead(CYCLE_BUTTON);
       if (cycleButtonState == 0) { // if changed grade during a problem
+        myservo.write(0);
         currGrade = cycleGrade(currGrade);
         displayGrade();
         Serial.println(currGradeToString(currGrade));
@@ -50,8 +61,7 @@ void loop() {
         goto Skip;
       }
       enterButtonState = digitalRead(ENTER_BUTTON);
-    }
-      
+    } 
 
     if (p.result != currProxActive()) { // Was the user correct?
       wrongProb();
@@ -61,8 +71,9 @@ void loop() {
     Serial.println(currProxActive());
     
     Skip: delay(250);
+    // reset motor to pos 0
+    myservo.write(0);
   }
-  // analogWrite()
 }
 
 // Display functions declared here due to scope issues ----------------------
@@ -108,7 +119,7 @@ void correctProb() {
   Serial.println("Correct Answer :(");
   display.println(message);
   display.display();
-  delay(2000);
+  soundCorrect(SPEAKER_PIN);
 }
 
 void wrongProb() {
@@ -120,7 +131,7 @@ void wrongProb() {
   Serial.println("Wrong Answer :(");
   display.println(message);
   display.display();
-  delay(2000);
+  soundIncorrect(SPEAKER_PIN);
 }
 
 

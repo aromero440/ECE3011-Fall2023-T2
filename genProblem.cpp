@@ -17,8 +17,8 @@ problem generateProblem(Grade grade) {
         // Addition or subtraction
         // Within 0-10
         operation = randomInt(ADDITION, SUBTRACTION);
-        op1 = randomInt(0, 9);
-        op2 = randomInt(0, 9 - op1);
+        op1 = randomInt(0, 7);
+        op2 = randomInt(0, 7 - op1);
         if (operation == ADDITION) {
                 result = op1 + op2;
             } else {
@@ -35,8 +35,8 @@ problem generateProblem(Grade grade) {
         // Addition or subtraction
         // Within 0-20
         operation = randomInt(ADDITION, SUBTRACTION);
-        op1 = randomInt(0, 9);
-        op2 = randomInt(0, 9 - op1);
+        op1 = randomInt(0, 7);
+        op2 = randomInt(0, 7 - op1);
         if (operation == ADDITION) {
                 result = op1 + op2;
             } else {
@@ -54,13 +54,13 @@ problem generateProblem(Grade grade) {
         // Within 0-39 (max our board can do)
         operation = randomInt(ADDITION, MULTIPLICATION);
         if (operation == MULTIPLICATION) {
-            op1 = randomInt(0,3);
+            op1 = randomInt(0,2);
             op2 = op1;
             result = op1 * op1;
             break;
         }
-        op1 = randomInt(0, 9);
-        op2 = randomInt(0, 9 - op1);
+        op1 = randomInt(0, 7);
+        op2 = randomInt(0, 7 - op1);
         if (operation == ADDITION) {
                 result = op1 + op2;
         } else {
@@ -76,15 +76,15 @@ problem generateProblem(Grade grade) {
     case Third:
         operation = randomInt(ADDITION, MULTIPLICATION);
         if (operation == MULTIPLICATION) {
-            op1 = randomInt(0, 4);
+            op1 = randomInt(0, 2);
             op2 = 0;
             do {
-                op2 = randomInt(0, 4);
+                op2 = randomInt(0, 3);
             } while (op1 * op2 >= 10);
             result = op1 * op2;
         } else {
-            op1 = randomInt(0, 9);
-            op2 = randomInt(0, 9 - op1);
+            op1 = randomInt(0, 7);
+            op2 = randomInt(0, 7 - op1);
             if (operation == ADDITION) {
                 result = op1 + op2;
             } else {

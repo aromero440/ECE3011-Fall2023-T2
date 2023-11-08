@@ -1,6 +1,7 @@
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
+#include <Servo.h>
 
 #ifndef GLOBALS_H
 #define GLOBALS_H
@@ -38,6 +39,8 @@ enum Grade
 #define ENTER_BUTTON 3 
 #define CYCLE_BUTTON 2
 
+#define MOTOR_PIN 5
+
 #define Prox_0 8
 #define Prox_1 7
 #define Prox_2 A1
@@ -47,5 +50,7 @@ enum Grade
 #define Prox_6 9
 #define Prox_7 A0
 #define Prox_8 4
+
+#define SPEAKER_PIN 6
 
 #endif // GLOBALS_H
